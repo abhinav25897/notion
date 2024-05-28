@@ -1,3 +1,4 @@
+
 <!-- original : https://codepen.io/SeanNorton/pen/LWBXQL -->
 <!DOCTYPE html>
 <html lang="en">
@@ -38,28 +39,28 @@ h1 {
 .card {
     padding: 10px 25px 10px 25px;
     border-radius: 10px;
-    background: #009688;
-    color: #fff;
+    background: #F4C2C2;
+    color: #000000;
     display: inline-block;
-    box-shadow: 2px 2px 1px 0px #295C7B;
+    box-shadow: 3px 2px 2px 2px #295C7B;
 }
 
 .card:hover {
-    margin-top: 2px;
+    margin-top: 3px;
     box-shadow: none;
 }
 
 .clock {
     display: inline-block;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'American Typewriter', serif;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.3em;
     /* padding-left: 20px; */
 }
 
 .time {
     display: inline-block;
-    min-width: 37px;
+    min-width: 45px;
 }
 
 .colon {
@@ -72,15 +73,15 @@ h1 {
     min-width: 162px;
     /* padding-right: 30px; */
     /* border-right: 2px solid #295C7B; */
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Luminari', fantasy;
     font-size: 1.2em;
 }
 .greet{
     
     min-width: 162px;
     /* padding-right: 30px; */
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2em;
+    font-family: 'Snell Roundhand', cursive;
+    font-size: 1.5em;
 }
 
     </style>
@@ -126,11 +127,11 @@ else{
 }
 hrs = today.getHours();
 if (hrs < 12)
-        greet = 'Good Morning  ';
+        greet = 'Good Morning Abhinav ';
     else if (hrs >= 12 && hrs <= 17)
-        greet = 'Good Afternoon ';
+        greet = 'Good Afternoon Abhinav ';
     else if (hrs >= 17 && hrs <= 24)
-        greet = 'Good Evening  ';
+        greet = 'Good Evening Abhinav ';
 // console.log(today.toLocaleTimeString());
 document.getElementById('greet').innerHTML = greet;
 document.getElementById('hour').innerHTML = hour;
