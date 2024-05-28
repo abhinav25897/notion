@@ -1,6 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+<head><meta http-equiv="cache-control" content="no-cache"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="-1"><style type="text/css">body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.counter-container {
+    text-align: center;
+}
+
+#heading-input {
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+.counter-widget {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.counter-button {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.counter-button:hover {
+    background-color: #0056b3;
+}
+
+.counter-display {
+    padding: 0 20px;
+    font-size: 24px;
+}
+</style>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minimal Counter Widget</title>
@@ -8,7 +64,7 @@
 </head>
 <body>
     <div class="counter-container">
-        <input type="text" id="heading-input" placeholder="Enter heading here" />
+        <input type="text" id="heading-input" placeholder="Enter heading here">
         <h1 id="counter-heading">Counter Widget</h1>
         <div class="counter-widget">
             <button id="decrement" class="counter-button">-</button>
@@ -17,5 +73,29 @@
         </div>
     </div>
     <script src="script.js"></script>
-</body>
-</html>
+
+
+
+<script>document.addEventListener('DOMContentLoaded', () => {
+    const counterDisplay = document.getElementById('counter');
+    const incrementButton = document.getElementById('increment');
+    const decrementButton = document.getElementById('decrement');
+    const headingInput = document.getElementById('heading-input');
+    const counterHeading = document.getElementById('counter-heading');
+    let counter = 0;
+
+    incrementButton.addEventListener('click', () => {
+        counter++;
+        counterDisplay.textContent = counter;
+    });
+
+    decrementButton.addEventListener('click', () => {
+        counter--;
+        counterDisplay.textContent = counter;
+    });
+
+    headingInput.addEventListener('input', () => {
+        counterHeading.textContent = headingInput.value || 'Counter Widget';
+    });
+});
+</script></body>
