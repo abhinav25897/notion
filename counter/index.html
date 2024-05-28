@@ -2,10 +2,10 @@
 <html>
 <head><meta http-equiv="cache-control" content="no-cache"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="-1"><style type="text/css">body {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    height: 25vh;
+    margin: 20;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
 }
@@ -15,9 +15,9 @@
 }
 
 #heading-input {
-    padding: 10px;
-    font-size: 18px;
-    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+    margin-bottom: 0px;
     border: 1px solid #ddd;
     border-radius: 5px;
     width: 100%;
@@ -29,19 +29,19 @@
     display: flex;
     align-items: center;
     background: white;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 2, 2, .5);
+    margin-top: 10px;
 }
 
 .counter-button {
     background-color: #007BFF;
     border: none;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 13px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 15px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
@@ -51,7 +51,7 @@
 }
 
 .counter-display {
-    padding: 0 20px;
+    padding: 0 50px;
     font-size: 24px;
 }
 </style>
@@ -65,7 +65,7 @@
 <body>
     <div class="counter-container">
         <input type="text" id="heading-input" placeholder="Enter heading here">
-        <h1 id="counter-heading">Counter Widget</h1>
+        <h1 id="counter-heading">counter</h1>
         <div class="counter-widget">
             <button id="decrement" class="counter-button">-</button>
             <span id="counter" class="counter-display">0</span>
