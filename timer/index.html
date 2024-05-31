@@ -91,18 +91,18 @@
     </div>
   </section>
   <script>
-    function beep() {
-      var snd = new Audio("bell.mp3");  
-      snd.play();
-    }
     var timer;
     var seconds;
-    var minute;
-    
+
+    function beep() {
+      var snd = new Audio("bell.mp3");
+      snd.play();
+    }
+
     function start() {
       var input = document.getElementById("input").value;
       var input2 = document.getElementById("input2").value;
-      minute = parseInt(input);
+      var minute = parseInt(input);
       var seconds1 = parseInt(input2);
       if (isNaN(seconds1)) {
         seconds1 = 0;
@@ -133,7 +133,7 @@
         }
       }, 1000);
     }
-    
+
     function cancel() {
       clearInterval(timer);
       var display = document.getElementById("display");
