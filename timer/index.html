@@ -13,24 +13,7 @@
       padding: 10px;
       width: fit-content;
     }
-     <section class="section">
-    <div id="display">0:00</div>
-    <div class="buttons">
-      <input type="text" id="input" name="input" placeholder="min">
-      <input type="text" id="input2" name="input2" placeholder="sec">
-      <button onclick="start()">▶</button>
-      <button onclick="reset()">∎</button>
-    </div>
-  </section>
-  <!-- Add the audio element for the bell sound -->
-  <audio id="bellAudio" src="bell.mp3" preload="auto"></audio>
-  <script>
-    var timer;
-    var seconds;
-
-    function beep() {
-      var audio = document.getElementById("bellAudio");
-      audio.play();
+   
     }
     #display {
       margin-bottom: 5px;
@@ -59,6 +42,28 @@
       display: flex;
       flex-direction: row;
     }
+
+<body>
+  <section class="section">
+    <div id="display">0:00</div>
+    <div class="buttons">
+      <input type="text" id="input" name="input" placeholder="min">
+      <input type="text" id="input2" name="input2" placeholder="sec">
+      <button onclick="start()">▶</button>
+      <button onclick="reset()">∎</button>
+    </div>
+  </section>
+  <!-- Add the audio element for the bell sound -->
+  <audio id="bellAudio" src="bell.mp3" preload="auto"></audio>
+  <script>
+    var timer;
+    var seconds;
+
+    function beep() {
+      var audio = document.getElementById("bellAudio");
+      audio.play();
+    }
+    
     .buttons button {
       margin-right: 4px;
       padding: 5px 10px;
