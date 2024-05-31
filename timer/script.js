@@ -1,9 +1,11 @@
 let timer;
-let timeLeft = 60; // Timer duration in seconds, e.g., 60 seconds
+let timeLeft;
 
 const timerElement = document.getElementById('timer');
 const startButton = document.getElementById('start-button');
 const alarmSound = document.getElementById('alarm-sound');
+const minutesInput = document.getElementById('minutes-input');
+const secondsInput = document.getElementById('seconds-input');
 
 function updateTimerDisplay() {
     const minutes = Math.floor(timeLeft / 60);
@@ -12,21 +14,26 @@ function updateTimerDisplay() {
 }
 
 function startTimer() {
-    clearInterval(timer);
-    timeLeft = 60; // Reset to 60 seconds or desired duration
-    updateTimerDisplay();
+    const minutes = parseInt(minutesInput.value) || 0;
+    const seconds = parseInt(secondsInput.value) || 0;
+    timeLeft = minutes * 60 + seconds;
 
-    timer = setInterval(() => {
-        if (timeLeft > 0) {
-            timeLeft--;
-            updateTimerDisplay();
-        } else {
-            clearInterval(timer);
-            alarmSound.play();
-        }
-    }, 1000);
+    if (timeLeft > 0) {
+        updateTimerDisplay();
+        clearInterval(timer);
+
+        timer = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateTimerDisplay();
+            } else {
+                clearInterval(timer);
+                alarmSound.play();
+            }
+        }, 1000);
+    } else {
+        alert("Please enter a valid time.");
+    }
 }
 
 startButton.addEventListener('click', startTimer);
-
-document.addEventListener('DOMContentLoaded', updateTimerDisplay);
