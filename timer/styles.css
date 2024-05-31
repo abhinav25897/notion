@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#timer-container {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    font-size: 1rem;
+    margin: 5px;
+    width: 80px;
+    box-sizing: border-box;
+}
+
+#timer {
+    font-size: 3rem;
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: var(--button-background);
+    color: var(--button-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Light theme */
+@media (prefers-color-scheme: light) {
+    :root {
+        --background-color: #ffffff;
+        --text-color: #000000;
+        --button-background: #007bff;
+        --button-color: #ffffff;
+    }
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #333333;
+        --text-color: #ffffff;
+        --button-background: #0056b3;
+        --button-color: #ffffff;
+    }
+}
