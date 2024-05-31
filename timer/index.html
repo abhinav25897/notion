@@ -87,7 +87,7 @@
       <input type="text" id="input" name="input" placeholder="min">
       <input type="text" id="input2" name="input2" placeholder="sec">
       <button onclick="start()">▶</button>
-      <button onclick="cancel()">∎</button>
+      <button onclick="reset()">∎</button>
     </div>
   </section>
   <script>
@@ -99,7 +99,7 @@
       snd.play();
     }
 
-    function start() {
+    function getInput() {
       var input = document.getElementById("input").value;
       var input2 = document.getElementById("input2").value;
       var minute = parseInt(input);
@@ -111,6 +111,12 @@
         minute = 0;
       }
       seconds = minute * 60 + seconds1;
+      return { minute, seconds1 };
+    }
+
+    function start() {
+      clearInterval(timer); // Clear any existing timer
+      var { minute, seconds1 } = getInput();
       if (seconds == 0) {
         return;
       }
@@ -130,14 +136,16 @@
         if (seconds == 0) {
           beep();
           clearInterval(timer);
+          getInput(); // Take input again when timer is over
         }
       }, 1000);
     }
 
-    function cancel() {
+    function reset() {
       clearInterval(timer);
       var display = document.getElementById("display");
       display.innerHTML = '0:00';
+      getInput(); // Take input again when reset button is pressed
     }
   </script>
 </body>
