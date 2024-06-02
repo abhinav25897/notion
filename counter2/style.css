@@ -1,133 +1,60 @@
-*,
-
-*::after,
-
-*::before {
-
-  margin: 0;
-
+* {
   padding: 0;
-
+  margin: 0;
+  box-sizing: border-box;
 }
-
-html,
-
 body {
-
-  height: 100%;
-
+  height: 100vh;
+  background-color: #13162b;
+  display: grid;
+  place-items: center;
 }
-
-
-
-body {
-
-  background: rgb(255, 132, 100);
-
-  background: linear-gradient(
-
-    90deg,
-
-    rgba(255, 132, 100, 1) 0%,
-
-    rgba(253, 105, 165, 1) 100%
-
-  );
-
-}
-
 .container {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  height: 100%;
-
+  position: relative;
+  width: 80vmin;
+  background-color: #191c37;
+  padding: 100px 40px;
+  border-radius: 9px;
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
 }
-
-.card-body {
-
-  background: #fff;
-
-  padding: 25px;
-
-  border-radius: 10px;
-
+.container:after {
+  content: "";
+  position: absolute;
+  width: 85%;
+  left: 7.5%;
+  height: 120%;
+  bottom: -10%;
+  background-color: #0087ff;
+  z-index: -1;
+  border-radius: 8px;
+}
+h1 {
   text-align: center;
-
+  font-family: "Roboto Mono", monospace;
+  font-size: 80px;
+  color: #ffffff;
 }
-
-.card-body h1 {
-
-  margin-bottom: 15px;
-
-  font-size: 70px;
-
+.btns {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 80px;
 }
-
-.card-btn button {
-
+.btns button {
+  width: 130px;
+  padding: 15px 0;
+  font-size: 18px;
+  border: none;
+  outline: none;
   border-radius: 5px;
-
-  color: #262626;
-
-  padding: 10px 35px;
-
-  border: 0;
-
-  font-size: 15px;
-
-  font-weight: bold;
-
-  margin: 0 5px;
-
   cursor: pointer;
-
-  transition: 0.5s;
-
 }
-
-button#decrement {
-
-  background: #f6e58d;
-
+button.inc,
+button.dec {
+  background-color: #0087ff;
+  color: #ffffff;
 }
-
-button#decrement:hover {
-
-  background: #f79f1f;
-
-  color: #fff;
-
-}
-
-button#reset {
-
-  background: #f3a683;
-
-}
-
-button#reset:hover {
-
-  background: #ea2027;
-
-  color: #fff;
-
-}
-
-button#increment {
-
-  background: #c4e538;
-
-}
-
-button#increment:hover {
-
-  background: #009432;
-
-  color: #fff;
-
+button.reset {
+  background-color: transparent;
+  border: 4px solid #0087ff;
+  color: #0087ff;
 }
