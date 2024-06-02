@@ -1,41 +1,21 @@
-const mainTitle = document.querySelector('#title');
+let numContainer = document.getElementById("num");
+let value = 0;
 
-let curValue = 0;
+let btnInc = document.querySelector(".inc");
+let btnDec = document.querySelector(".dec");
+let btnReset = document.querySelector(".reset");
 
-
-
-const btnDecrement = document.querySelector('#decrement');
-
-const btnReset = document.querySelector('#reset');
-
-const btnIncrement = document.querySelector('#increment');
-
-
-
-btnIncrement.addEventListener('click', () => {
-
-  curValue++;
-
-  mainTitle.textContent = curValue;
-
+btnInc.addEventListener("click", () => {
+  value++;
+  numContainer.textContent = value;
 });
 
-
-
-btnDecrement.addEventListener('click', () => {
-
-  curValue--;
-
-  mainTitle.textContent = curValue;
-
+btnDec.addEventListener("click", () => {
+  value--;
+  numContainer.textContent = value;
 });
 
-
-
-btnReset.addEventListener('click', () => {
-
-  curValue = 0;
-
-  mainTitle.textContent = curValue;
-
+btnReset.addEventListener("click", () => {
+  value = 0;
+  numContainer.textContent = value;
 });
