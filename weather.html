@@ -6,15 +6,31 @@
     <title>weather</title>
 
     <style>
-        body{
-            background-color: aliceblue;
+        :root {
+            --background-light: aliceblue;
+            --background-dark: #333;
+            --text-light: #000;
+            --text-dark: #fff;
+        }
+
+        body {
+            background-color: var(--background-light);
+            color: var(--text-light);
+        }
+
+        .dark-theme body {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
         }
     </style>
 </head>
 <body>
    <a class="weatherwidget-io" href="https://forecast7.com/en/25d5985d14/patna/" data-label_1="PATNA" data-label_2="WEATHER" data-theme="gray" >PATNA WEATHER</a>
 <script>
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    // Function to toggle between light and dark themes
+    function toggleTheme() {
+        document.body.classList.toggle('dark-theme');
+    }
 </script>
 </body>
 </html>
