@@ -1,38 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Counter</title>
-    <!-- Font Awesome Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1 id="num">0</h1>
-      <div class="btns">
-        <button class="dec">
-          <i class="fas fa-minus"></i>
-        </button>
-        <button class="reset">
-          <i class="fas fa-redo"></i>
-        </button>
-        <button class="inc">
-          <i class="fas fa-plus"></i>
-        </button>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Widget</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="counter-widget">
+        <h1>Task Counter</h1>
+        <div id="counter">0</div>
+        <button id="increment-btn">Increment</button>
+        <button id="decrement-btn">Decrement</button>
+        <button id="reset-btn">Reset</button>
     </div>
-
-    <!-- Script -->
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
