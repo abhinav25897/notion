@@ -1,21 +1,30 @@
-let numContainer = document.getElementById("num");
-let value = 0;
+document.addEventListener('DOMContentLoaded', function() {
+    const counterElement = document.getElementById('counter');
+    const incrementBtn = document.getElementById('increment-btn');
+    const decrementBtn = document.getElementById('decrement-btn');
+    const resetBtn = document.getElementById('reset-btn');
 
-let btnInc = document.querySelector(".inc");
-let btnDec = document.querySelector(".dec");
-let btnReset = document.querySelector(".reset");
+    let count = 0;
 
-btnInc.addEventListener("click", () => {
-  value++;
-  numContainer.textContent = value;
-});
+    function updateCounter() {
+        counterElement.textContent = count;
+    }
 
-btnDec.addEventListener("click", () => {
-  value--;
-  numContainer.textContent = value;
-});
+    incrementBtn.addEventListener('click', function() {
+        count++;
+        updateCounter();
+    });
 
-btnReset.addEventListener("click", () => {
-  value = 0;
-  numContainer.textContent = value;
+    decrementBtn.addEventListener('click', function() {
+        count--;
+        updateCounter();
+    });
+
+    resetBtn.addEventListener('click', function() {
+        count = 0;
+        updateCounter();
+    });
+
+    // Initial update
+    updateCounter();
 });
