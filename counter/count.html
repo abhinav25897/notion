@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        input {
+            font-size: 24px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: var(--input-background);
+            color: var(--input-text);
+            border: 1px solid var(--input-border);
+            border-radius: 5px;
+        }
+        #counter {
+            font-size: 48px;
+            margin: 20px 0;
+        }
+        button {
+            font-size: 24px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .increment {
+            background-color: var(--increment-background);
+            color: var(--increment-text);
+        }
+        .decrement {
+            background-color: var(--decrement-background);
+            color: var(--decrement-text);
+        }
+
+        /* Light theme */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --background-color: #ffffff;
+                --text-color: #000000;
+                --input-background: #ffffff;
+                --input-text: #000000;
+                --input-border: #cccccc;
+                --increment-background: #007BFF;
+                --increment-text: #ffffff;
+                --decrement-background: #FF0000;
+                --decrement-text: #ffffff;
+            }
+        }
+
+        /* Dark theme */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #121212;
+                --text-color: #ffffff;
+                --input-background: #333333;
+                --input-text: #ffffff;
+                --input-border: #555555;
+                --increment-background: #007BFF;
+                --increment-text: #ffffff;
+                --decrement-background: #FF0000;
+                --decrement-text: #ffffff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="title" placeholder="Enter Title">
+    <div id="counter">0</div>
+    <div>
+        <button class="increment" onclick="increment()">+</button>
+        <button class="decrement" onclick="decrement()">-</button>
+    </div>
+
+    <script>
+        let count = 0;
+
+        function increment() {
+            count++;
+            document.getElementById('counter').innerText = count;
+        }
+
+        function decrement() {
+            count--;
+            document.getElementById('counter').innerText = count;
+        }
+    </script>
+</body>
+</html>
