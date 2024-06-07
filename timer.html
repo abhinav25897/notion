@@ -1,165 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-
-
-  <style>
-    body{
-      background-color: aliceblue;
-    }
-    .section {
-      background-color: aliceblue;
-      padding: 10px;
-      width: fit-content;
-
-    }
-#display{
-  margin-bottom: 5px;
-    font-size: 30px;
-    font-family: monospace;
-    color: darkturquoise;
-}
-    .section input {
-      font-size: 8px;
-        color: #2D2D32;
-        text-align: center;
-        border: 1px solid gray;
-        width: 30px;
-        padding: 5px 1px;
-        margin-right: 4px;
-       display: inline-block;
-    }
-
-    .buttons {
-        display: flex;
-        flex-direction: row;
-    }
-
-        .buttons button {
-            margin-right: 4px;
-
-            padding: 5px 10px;
-
-            background-color: #d8d8d8;
-            border: none;
-
-            color: white;
-            font-size: 15px;
-
-            cursor: pointer;
-            outline: none;
-
-            transition: 0.1s;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-            .buttons button:active {
-                box-shadow: 0 3px 3px -2px rgba(0,0,0,.2), 0 3px 4px 0 rgba(0,0,0,.14), 0 1px 8px 0 rgba(0,0,0,.12);
-            }
+        .container {
+            text-align: center;
+        }
 
-            .buttons button:last-child {
-                margin-right: 0;
-            }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
 
-            .buttons button:nth-child(3){
-                background-color: #8bc34a;
-            }
+        input {
+            padding: 5px;
+            width: 40px;
+            margin-right: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 1.5em;
+        }
 
-            .buttons button:nth-child(4){
-                background-color: rgb(201, 89, 69);
-            }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
 
-  </style>
-
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  <section class="section">
-    <div id="display">0:00</div>
-  
-    <div class="buttons">
-      <input type="text" id="input" name="input" placeholder="min">
-      <input type="text" id="input2" name="input2" placeholder="sec">
-
-      <button onclick="start()">▶</button>
-      <button onclick="cancel()">∎</button>
+    <div class="container">
+        <h1 id="timer">00:00:00</h1>
+        <div>
+            <input type="number" id="hours" value="0">
+            <span>:</span>
+            <input type="number" id="minutes" value="0">
+            <span>:</span>
+            <input type="number" id="seconds" value="0">
+        </div>
+        <button id="startStop">Start</button>
+        <button id="reset">Reset</button>
     </div>
-    
-  </section>
-</body>
+    <!-- Sound notification -->
+    <audio id="notificationSound">
+        <source src="bell.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        let timer;
+        let totalSeconds = 0;
 
-
-<script>
-  function beep() {
-    var snd = new Audio("bell.mp3");  
-    snd.play();
-}
-  var timer;
-
-
-function start(){
-  var input = document.getElementById("input").value;
-  var input2 = document.getElementById("input2").value;
-
-
-minute = parseInt(input)
-seconds1 = parseInt(input2)
-if( isNaN(seconds1)){
-  seconds1 = 0
-}
-if( isNaN(minute)){
-  minute = 0
-}
-seconds = minute*60+seconds1
-
-if(seconds==0){
- 
-  return;
-}
-
-var textSec = "00"
-textSec = seconds1
-
-var display = document.getElementById("display");
-display.innerHTML = minute + ':' + textSec
-    var statSec = seconds1
-    timer = setInterval(function(){
-        seconds--;
-
-        if(statSec != 0)
-            statSec--
-        else
-            statSec = 59
-
-        if(statSec < 10)
-            textSec = '0' + statSec
-        else 
-            textSec = statSec
-
-        display.innerHTML = Math.floor(seconds/60) + ':' + textSec
-
-        if(seconds == 0){
-          console.log('d')
-          beep();
-        clearInterval(timer)
+        function startTimer() {
+            totalSeconds = parseInt(document.getElementById('hours').value) * 3600 +
+                               parseInt(document.getElementById('minutes').value) * 60 +
+                               parseInt(document.getElementById('seconds').value);
+            displayTime();
+            timer = setInterval(() => {
+                totalSeconds--;
+                if (totalSeconds < 0) {
+                    clearInterval(timer);
+                    totalSeconds = 0;
+                    displayTime();
+                    document.getElementById('startStop').textContent = 'Start';
+                    playNotificationSound();
+                } else {
+                    displayTime();
+                }
+            }, 1000);
         }
-                
-    }, 1000)
 
-}
+        function stopTimer() {
+            clearInterval(timer);
+            document.getElementById('startStop').textContent = 'Start';
+        }
 
+        function resetTimer() {
+            clearInterval(timer);
+            document.getElementById('startStop').textContent = 'Start';
+            document.getElementById('hours').value = '0';
+            document.getElementById('minutes').value = '0';
+            document.getElementById('seconds').value = '0';
+            totalSeconds = 0;
+            displayTime();
+        }
 
-function cancel(){
-    clearInterval(timer)
-    display.innerHTML ='00:00'
-    seconds = minute * 60
-}
+        function displayTime() {
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            document.getElementById('timer').textContent = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
+        }
 
+        function formatTime(time) {
+            return time < 10 ? `0${time}` : time;
+        }
 
+        function playNotificationSound() {
+            const notificationSound = document.getElementById('notificationSound');
+            notificationSound.play();
+        }
 
-</script>
+        document.getElementById('startStop').addEventListener('click', () => {
+            if (!timer) {
+                startTimer();
+                document.getElementById('startStop').textContent = 'Stop';
+            } else {
+                stopTimer();
+            }
+        });
 
-
-
+        document.getElementById('reset').addEventListener('click', resetTimer);
+    </script>
+</body>
 </html>
