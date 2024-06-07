@@ -3,279 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calculator</title>
+    <title>Calculator</title>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=MuseoModerno:wght@300;400&display=swap" rel="stylesheet">
-    
-    <!-- Include system default theme setting -->
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#ffffff">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+128+Text" rel="stylesheet">
 
     <style>
+        body {
+            margin: 0 auto;
+            text-align: center;
+            font-size: 23px;
+            font-family: 'Dosis', sans-serif;
+        }
 
-body {
-  margin: 0 auto;
-  text-align: center;
-  font-size: 23px;
-}
+        .main {
+            max-width: 90%;
+            margin: 0 auto;
+        }
 
-.main {
-  max-width: 10%;
-}
+        .calculator {
+            display: inline-block;
+            background: white;
+            margin: 1% 0;
+            color: black;
+            border: 3px solid #000000;
+            border-radius: 5px;
+            box-shadow: 2px 2px 1px 0px #000000;
+            max-width: 450px;
+            width: 100%;
+        }
 
-.button > .over {
-  text-decoration:overline;
-  display: inline-block;
-  position:relative;
-  top: 3px;
-  left: -4px;
-}
+        .calculator .button {
+            font-size: x-large;
+            min-width: 2.4em;
+            min-height: 2.4em;
+            margin: 0.8%;
+            border-radius: 25%;
+            border: 0.08em solid #000;
+            font-family: monospace;
+            background: white;
+            box-shadow: 0.04em  0.04em 0.02em 0px #000000;
+            cursor: pointer;
+        }
 
-.calculator {
-    display: inline-block;
-    background: white;
-    margin: 1% 0;
-    color: black;
-    border: 3px solid #000000;
-    border-radius: 5px;
-    box-shadow: 2px 2px 1px 0px #000000;
-    max-width: 450px;
-}
+        .calculator .button:active,
+        .button-active {
+            background: rgb(0, 0, 0);
+            color: #ffffff;
+            transform: scale(0.8);
+        }
 
-.calculator .button {
-    font-size: x-large;
-    min-width: 2.4em;
-    min-height: 2.4em;
-    margin: 0.8%;
-    border-radius: 25%;
-    border: 0.08em solid #000;
-    font-family: monospace;
-    background: white;
-    box-shadow: 0.04em  0.04em 0.02em 0px #000000;
-}
+        .calculator .button:hover,
+        .calculator #backspace:hover {
+            background: #f3fff3;
+            color: #000000;
+            transform: scale(0.9);
+            border-radius: 20%;
+        }
 
-.calculator .space {
-    font-size: x-large;
-    width: 2.4em;
-    min-height: 2.4em;
-    margin: 0.5%;
-    border-radius: 15%;
-    border: 0.08em solid #ffffff;
-    background: white;
-}
+        .calculator #clear:hover,
+        .calculator #rad:hover,
+        .calculator #deg:hover {
+            background: rgb(0, 0, 0) !important;
+            color: #ffffff;
+            transform: scale(0.9);
+            border-radius: 20%;
+        }
 
-.calculator .accent{
-   background: #f3fff3;  
-}
+        .calculator .space {
+            font-size: x-large;
+            width: 2.4em;
+            min-height: 2.4em;
+            margin: 0.5%;
+            border-radius: 15%;
+            border: 0.08em solid #ffffff;
+            background: white;
+        }
 
-.calculator button:hover,
-#backspace:hover {
-    background: #f3fff3;
-  color:#000000;
-  transform: scale(0.9);
-  border-radius: 20%;
-}
+        .calculator .accent {
+            background: #f3fff3;
+        }
 
-.calculator 
-#clear:hover , #rad:hover  ,#deg:hover{
-  background: rgb(0, 0, 0)!important;
-  color:#ffffff;
-  transform: scale(0.9);
-  border-radius: 20%;
-}
+        #screen {
+            border: 3px solid #000000;
+            border-radius: 5px;
+            width: 80%;
+            height: 100px;
+            margin: 5%;
+            text-align: right;
+            overflow: auto;
+            overflow-wrap: break-word;
+            font-size: 60px;
+            font-family: monospace;
+            background-color: #000;
+            color: #fff;
+        }
 
-.calculator button:focus,
-#clear:focus,
-#backspace:focus {
-  outline: none;
-}
+        #clean,
+        #rad,
+        #deg {
+            background: rgb(27, 27, 27);
+            color: #ffffff;
+        }
 
-.button:active,
-.button-active {
-  background: rgb(0, 0, 0);
-  color:#ffffff;
-  transform: scale(0.8);
-}
+        .rows {
+            margin: 5%;
+        }
 
-#screen {
-    border: 3px solid #000000;
-    border-radius: 5px;
-    width: 80%;
-    height: 100px;
-    margin : 5%;
-    text-align: right;
-    overflow: auto;
-    overflow-wrap: break-word;
-    font-size: 60px;
-    font-family: monospace;
-    background-color: #000;
-    color: #fff;
-}
+        .calculator__row1,
+        .calculator__row2,
+        .calculator__row3,
+        .calculator__row4,
+        .calculator__row5 {
+            display: flex;
+            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center;
+            font-family: monospace;
+        }
 
-#clean {
-  background: rgb(27, 27, 27);
-  color:#ffffff;
-}
-#rad {
-  background: rgb(27, 27, 27);
-  color:#ffffff;
-}
-#deg {
-  background: rgb(27, 27, 27);
-  color:#ffffff;
-}
+        .calculator__row5 {
+            margin-bottom: 3%;
+        }
 
-.rows {
-    margin: 5%;
-}
+        .footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
 
-.calculator__row1,
-.calculator__row2,
-.calculator__row3,
-.calculator__row4,
-.calculator__row5 {
-  display: flex;
-  margin: 0 auto;
-  justify-content: space-between;
-  align-items: center;
-  font-family: monospace;
-}
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #ffffff;
+            }
 
-.calculator__row5 {
-  margin-bottom: 3%;
-} 
+            .calculator {
+                background: #333333;
+                color: #ffffff;
+                border: 3px solid #ffffff;
+            }
 
-.footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
+            .calculator .button {
+                background: #444444;
+                color: #ffffff;
+                border: 0.08em solid #ffffff;
+            }
 
+            .calculator .space {
+                background: #444444;
+                border: 0.08em solid #444444;
+            }
+
+            #screen {
+                background-color: #222222;
+                color: #ffffff;
+                border: 3px solid #ffffff;
+            }
+        }
     </style>
 </head>
 <body>
-    <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+128+Text" rel="stylesheet">
 <div id="main">
-		<div class="calculator">
-		<input type="text" id="screen">
-
+    <div class="calculator">
+        <input type="text" id="screen" readonly>
         <div class="rows">
             <div class="calculator__row1">
                 <button class="button" id="rad">Rad</button>
-                <button class="button" id="deg" >Deg</button>
-                <div class="space" ></div>
-                <div class="space" ></div>
-                <div class="space" ></div>
-                <div class="space" ></div>
+                <button class="button" id="deg">Deg</button>
+                <div class="space"></div>
+                <div class="space"></div>
+                <div class="space"></div>
+                <div class="space"></div>
                 <button class="button" id="clean">AC</button>
             </div>
-                <div class="calculator__row2">
-                     <button class="button accent">sin</button>
-                     <button class="button accent">cos</button>
-                     <button class="button accent">tan</button>
-                       <button class="button ">7</button>
-                        <button class="button ">8</button>
-                        <button class="button ">9</button>
-                        <button class="button accent">*</button>
-                </div>
-                <div class="calculator__row3">
-                    <button class="button accent">x^</button>
-                    <button class="button accent">pi</button>
-                    <button class="button accent">%</button>
-                      <button class="button ">4</button>
-                        <button class="button ">5</button>
-                        <button class="button ">6</button>
-                        <button class="button accent">/</button>
-                </div>
-                <div class="calculator__row4">
-                  <button class="button accent">ln</button>
-                  <button class="button accent">log</button>
-                  <button class="button accent">x!</button>
-                        <button class="button ">1</button>
-                        <button class="button ">2</button>
-                        <button class="button ">3</button>
-                        <button class="button accent">-</button>
-                </div>
-                        <div class="calculator__row5">
-                  <button class="button accent">&radic;<span class="over"></span></button>
-                  <button class="button accent">(</button>
-                  <button class="button accent">)</button>
-                        <button class="button accent">.</button>
-                  <button class="button ">0</button>
-                        <button class="button accent">=</button>
-                        <button class="button accent">+</button>
+            <div class="calculator__row2">
+                <button class="button accent">sin</button>
+                <button class="button accent">cos</button>
+                <button class="button accent">tan</button>
+                <button class="button">7</button>
+                <button class="button">8</button>
+                <button class="button">9</button>
+                <button class="button accent">*</button>
+            </div>
+            <div class="calculator__row3">
+                <button class="button accent">x^</button>
+                <button class="button accent">pi</button>
+                <button class="button accent">%</button>
+                <button class="button">4</button>
+                <button class="button">5</button>
+                <button class="button">6</button>
+                <button class="button accent">/</button>
+            </div>
+            <div class="calculator__row4">
+                <button class="button accent">ln</button>
+                <button class="button accent">log</button>
+                <button class="button accent">x!</button>
+                <button class="button">1</button>
+                <button class="button">2</button>
+                <button class="button">3</button>
+                <button class="button accent">-</button>
+            </div>
+            <div class="calculator__row5">
+                <button class="button accent">&radic;<span class="over"></span></button>
+                <button class="button accent">(</button>
+                <button class="button accent">)</button>
+                <button class="button accent">.</button>
+                <button class="button">0</button>
+                <button class="button accent">=</button>
+                <button class="button accent">+</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-var display = document.getElementById("screen");
-var buttons = document.getElementsByClassName("button");
-  
-  Array.prototype.forEach.call(buttons, function(button) {
-  button.addEventListener("click", function() {
-    if (button.textContent != "=" && 
-    button.textContent != "AC" && 
-    button.textContent != "*" && 
-    button.textContent != "/" && 
-    button.textContent != "√" && 
-    button.textContent != "+" && 
-    button.textContent != "%" && 
-    button.textContent != "=" && 
-    button.textContent != "-" && 
-    button.textContent != "sin" && 
-    button.textContent != "cos" && 
-    button.textContent != "tan" && 
-    button.textContent != "log" && 
-    button.textContent != "ln" && 
-    button.textContent != "x^" && 
-    button.textContent != "x!" && 
-    button.textContent != "pi" && 
-    button.textContent != "Rad" 
-    && button.textContent != "Deg") {
-      display.value += button.textContent;
-    } else if (button.textContent === "=") {
-      equals();
-    } else if (button.textContent === "AC") {
-      clear();
-    } else if (button.textContent === "*") {
-      multiply();
-    } else if (button.textContent === "/") {
-      divide();
-    } else if (button.textContent === "+") {
-      plus();
-      } else if (button.textContent === "-") {
-      Minus();
-    } else if (button.textContent === "%") {
-      percent();
-    } else if (button.textContent === "pi") {
-      pi();
-    } else if (button.textContent === "√") {
-      squareRoot();
-    } else if (button.textContent === "sin") {
-      sin();
-    } else if (button.textContent === "cos") {
-      cos();
-    } else if (button.textContent === "tan") {
-      tan();
-    } else if (button.textContent === "log") {
-      log();
-    } else if (button.textContent === "ln") {
-      ln();
-    } else if (button.textContent === "x^") {
-      exponent();
-    } else if (button.textContent === "x!") {
-      factorial();
-    } else if (button.textContent === "Rad") {
-      radians();
-    } else if (button.textContent === "Deg") {
-      degrees();
-    }
-  });
-});
+    var display = document.getElementById("screen");
+    var buttons = document.getElementsByClassName("button");
+    var isRadians = true;
 
-function syntaxError() {
-  if (eval(display.value) == SyntaxError || eval(display.value) == ReferenceError || eval(display.value) == TypeError) {
-    display.value == "Syntax Error";
-  }
+    Array.prototype.forEach.call(buttons, function(button) {
+        button.addEventListener("click", function() {
+            var text = button.textContent.trim();
+            if (!isNaN(text) || text === ".") {
+                display.value += text;
+            } else if (text === "AC") {
+                clear();
+            } else if (text === "=") {
+                equals();
+            } else if (text === "Rad" || text === "Deg") {
+                toggleAngleMode(text);
+            } else {
+                addOperator(text);
+            }
+        });
+    });
+
+    function clear() {
+        display.value = "";
+    }
+
+    function addOperator(operator) {
+        var lastChar = display.value[display.value.length - 1];
+        if ("+-*/^(".includes(lastChar) && operator !== '(') {
+            display.value = display.value.slice(0, -1);
+        }
+        display.value += operator;
+    }
+
+    function equals() {
+        try {
+            let expression = display.value.replace(/√/g, 'Math.sqrt')
+                                          .replace(/pi/g, 'Math.PI')
+                                          .replace(/x!/g, 'factorial')
+                                          .replace(/x\^/g, '**')
+                                          .replace(/sin\(/g, isRadians ? 'Math.sin(' : 'degSin(')
+                                          .replace(/cos\(/g, isRadians ? 'Math.cos(' : 'degCos(')
+                                          .replace(/tan\(/g, isRadians ? 'Math.tan(' : 'degTan(')
+                                          .replace(/ln/g, 'Math.log')
+                                          .replace(/log/g, 'Math.log10');
+            display.value = eval(expression);
+        } catch (e) {
+            display.value = "Syntax Error";
+        }
+    }
+
+    function toggleAngleMode(mode) {
+        isRadians = mode === "Rad";
+    }
+
+    function degSin(x) {
+        return Math.sin(x * (Math.PI / 180));
+    }
+
+    function degCos(x) {
+        return Math.cos(x * (Math.PI / 180));
+    }
+
+    function degTan(x) {
+        return Math.tan(x * (Math.PI / 180));
+    }
+
+    function factorial(x) {
+        if (x < 0) return "Syntax Error";
+        if (x === 0 || x === 1) return 1;
+        let fact = 1;
+        for (let i = 1; i <= x; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+</script>
+</body>
+</html>
