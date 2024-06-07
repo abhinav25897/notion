@@ -7,14 +7,14 @@
 
     <title>Time Left in this month</title>
     <style>
-        
-        body{
+        /* Light theme */
+        body {
             text-align: center;
             font-family: monospace;
-            background-color: #fff;
+            background-color: #fff; /* Default background color */
         }
-        .box{
-            display: inline-block;
+
+        .box {
             display: inline-block;
             padding: 10px;
             border-radius: 5px;
@@ -24,67 +24,72 @@
             border-radius: 5px;
             box-shadow: 2px 2px 1px 0px #000000;
         }
-      
-        h2{
+
+        h2 {
             display: inline-block;
             margin-right: 10px;
             margin-block-start: 5px;
         }
-        h3{
+
+        h3 {
             text-align: left;
             display: inline-block;
-            
         }
-        .small{
+
+        .small {
             font-size: 15px;
             font-weight: lighter;
         }
 
-        #days{
-            background-color:  #f3fff3; ;
+        #days {
+            background-color: #f3fff3; /* Default background color for days */
         }
 
-
+        /* Dark theme */
+        body.dark-theme {
+            background-color: #333;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
-    
-    <div id="counter">
 
+    <div id="counter">
         <h2 class="box" id="days"></h2>
         <h2 class="box" id="hours"></h2>
-        <h2 class="box" id="minutes"></h2>
-        <h2 class="box" id="seconds"></h2>
+    
+    
         <h3>
             Left in <br>This Month
         </h3>
     </div>
 
-
-
 <script>
-    function CountDownTimer  () {
-    left_days = document.getElementById("days");
-    left_hours = document.getElementById("hours");
-    left_minutes = document.getElementById("minutes");
-    left_seconds = document.getElementById("seconds");
- 
-    }
-    function showRemaining (){
-    now = new Date();
-    days_in_this_month = new Date( now.getFullYear(), now.getMonth()+1, 0).getDate(); 
-    days = days_in_this_month- now.getDate();
-    hours = 23 - now.getHours();
-    minutes = 59 - now.getMinutes();
-    seconds = 59 - now.getSeconds();
-    left_days.innerHTML = days + "<br> <span class=\"small\"> days </span>"
-    left_hours.innerHTML = hours + "<br> <span class=\"small\"> hours</span>";
-    left_minutes.innerHTML = minutes + "<br> <span class=\"small\">mins</span>";
-    left_seconds.innerHTML = seconds + "<br> <span class=\"small\">secs</span>";
+    function showRemaining() {
+        var now = new Date();
+        var hours = now.getHours();
+
+        // Automatically switch theme based on the time of day
+        if (hours >= 20 || hours < 6) {
+            document.body.classList.add("dark-theme");
+        } else {
+            document.body.classList.remove("dark-theme");
+        }
+
+        var days_in_this_month = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+        var days = days_in_this_month - now.getDate();
+        var hours = 23 - now.getHours();
+        var minutes = 59 - now.getMinutes();
+        var seconds = 59 - now.getSeconds();
+
+        document.getElementById("days").innerHTML = days + "<br> <span class=\"small\"> days </span>";
+        document.getElementById("hours").innerHTML = hours + "<br> <span class=\"small\"> hours</span>";
+        document.getElementById("minutes").innerHTML = minutes + "<br> <span class=\"small\">mins</span>";
+        document.getElementById("seconds").innerHTML = seconds + "<br> <span class=\"small\">secs</span>";
     }
 
-timer = setInterval (showRemaining, 1000) 
-CountDownTimer() ;
+    showRemaining(); // Initial call to display countdown
+    var timer = setInterval(showRemaining, 1000); // Update countdown every second
 </script>
 </body>
 </html>
