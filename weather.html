@@ -6,103 +6,57 @@
     <title>Weather</title>
 
     <style>
-        :root {
-            --text-light: #000;
-            --text-dark: #fff;
-            /* --background-light: #f9f9f9; */
-            /* --background-dark: #333; */
-            --link-light: #007bff;
-            --link-dark: #007bff;
-            --link-hover-light: #0056b3;
-            --link-hover-dark: #4d94ff;
-        }
-
         body {
-            color: var(--text-light);
-            /* background-color: var(--background-light); */
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             font-family: Arial, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
         }
 
-        .weatherwidget-container {
-            text-align: center;
-            padding: 0px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* background-color: #fff; */
-            max-width: 320px;
-            width: 100%;
+        /* Default (Light theme) styles */
+        body {
+            background-color: aliceblue;
+            color: #000000;
         }
 
-        a {
-            color: var(--link-light);
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            transition: color 0.3s;
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 5px;
-            /* background-color: transparent; */
-            cursor: pointer;
-        }
+        /* Dark theme styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #ffffff;
+            }
 
-        a:hover {
-            color: var(--link-hover-light);
-        }
-
-        [data-theme="dark"] {
-            --text-light: #fff;
-            /* --background-light: #333; */
-            --link-light: #fff;
-            --link-hover-light: #4d94ff;
-        }
-
-        [data-theme="dark"] a:hover {
-            color: var(--link-hover-dark);
+            .weatherwidget-io {
+                filter: invert(1);
+            }
         }
     </style>
 </head>
 <body>
-   <div class="weatherwidget-container">
-       <a class="weatherwidget-io" href="https://forecast7.com/en/25d5985d14/patna/" data-label_1="PATNA" data-label_2="WEATHER" data-theme="auto">Check Weather in Patna</a>
-   </div>
+    <a class="weatherwidget-io" href="https://forecast7.com/en/25d5985d14/patna/" data-label_1="PATNA" data-label_2="WEATHER" data-days="3">PATNA WEATHER</a>
+    <script>
+        (function(d,s,id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if(!d.getElementById(id)){
+                js = d.createElement(s); js.id = id;
+                js.src = 'https://weatherwidget.io/js/widget.min.js';
+                fjs.parentNode.insertBefore(js,fjs);
+            }
+        }(document,'script','weatherwidget-io-js'));
 
-   <!-- Include the WeatherWidget script -->
-   <script>
-       !function(d,s,id){
-           var js,fjs=d.getElementsByTagName(s)[0];
-           if(!d.getElementById(id)){
-               js=d.createElement(s);
-               js.id=id;
-               js.src='https://weatherwidget.io/js/widget.min.js';
-               fjs.parentNode.insertBefore(js,fjs);
-           }
-       }(document,'script','weatherwidget-io-js');
-   </script>
+        // Apply theme based on system preference
+        function applyWidgetTheme() {
+            var widget = document.querySelector('.weatherwidget-io');
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                widget.setAttribute('data-theme', 'dark');
+            } else {
+                widget.setAttribute('data-theme', 'gray');
+            }
+        }
 
-   <script>
-       // Detect system color scheme preference
-       const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyWidgetTheme();
 
-       // Function to set theme based on user's system preference
-       function setTheme() {
-           const theme = prefersDarkMode ? 'dark' : 'light';
-           document.documentElement.setAttribute('data-theme', theme);
-       }
-
-       // Apply theme on page load
-       setTheme();
-
-       // Listen for changes in system color scheme preference
-       window.matchMedia('(prefers-color-scheme: dark)').addListener(setTheme);
-   </script>
+        // Listen for changes in the system theme
+        window.matchMedia('(prefers-color-scheme: dark)').addListener(applyWidgetTheme);
+    </script>
 </body>
 </html>
-
