@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Widget</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .calendar {
+            width: 200px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .calendar-header {
+            background-color: #9a4b4b;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+        .calendar-header .month {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .calendar-header .dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+        .calendar-header .dots div {
+            width: 7px;
+            height: 7px;
+            background-color: white;
+            border-radius: 50%;
+            margin: 0 2px;
+        }
+        .calendar-body {
+            background-color: #f3f3f3;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .calendar-body .date {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .calendar-body .day {
+            font-size: 20px;
+            color: #555;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar">
+        <div class="calendar-header">
+            <div class="month" id="month">JUN</div>
+            <div class="dots">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="calendar-body">
+            <div class="date" id="date">17</div>
+            <div class="day" id="day">Monday</div>
+        </div>
+    </div>
+
+    <script>
+        function updateCalendar() {
+            const date = new Date();
+            const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+            const month = monthNames[date.getMonth()];
+            const day = dayNames[date.getDay()];
+            const dayOfMonth = date.getDate();
+
+            document.getElementById('month').textContent = month;
+            document.getElementById('day').textContent = day;
+            document.getElementById('date').textContent = dayOfMonth;
+        }
+
+        updateCalendar();
+        setInterval(updateCalendar, 86400000); // Update every 24 hours
+    </script>
+</body>
+</html>
