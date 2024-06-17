@@ -8,28 +8,30 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            justify-content: left;
             align-items: center;
-            height: 100vh;
+            height: 0 vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: var(--background-color);
+            color: var(--text-color);
         }
         .calendar {
             width: 200px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             overflow: hidden;
+            background-color: var(--calendar-bg-color);
         }
         .calendar-header {
-            background-color: #9a4b4b;
-            color: white;
+            background-color: var(--header-bg-color);
+            color: var(--header-text-color);
             text-align: center;
             padding: 10px 0;
             position: relative;
         }
         .calendar-header .month {
-            font-size: 20px;
+            font-size: 25px;
             font-weight: bold;
         }
         .calendar-header .dots {
@@ -40,12 +42,11 @@
         .calendar-header .dots div {
             width: 7px;
             height: 7px;
-            background-color: white;
+            background-color: var(--header-text-color);
             border-radius: 50%;
             margin: 0 2px;
         }
         .calendar-body {
-            background-color: #f3f3f3;
             text-align: center;
             padding: 20px 0;
         }
@@ -56,15 +57,34 @@
         }
         .calendar-body .day {
             font-size: 20px;
-            color: #555;
             margin: 0;
+        }
+        /* Light theme */
+        :root {
+            --background-color: #f0f0f0;
+            --text-color: #000;
+            --border-color: #ddd;
+            --calendar-bg-color: #fff;
+            --header-bg-color: #9a4b4b;
+            --header-text-color: #fff;
+        }
+        /* Dark theme */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #121212;
+                --text-color: #fff;
+                --border-color: #333;
+                --calendar-bg-color: #1e1e1e;
+                --header-bg-color: #bb86fc;
+                --header-text-color: #000;
+            }
         }
     </style>
 </head>
 <body>
     <div class="calendar">
         <div class="calendar-header">
-            <div class="month" id="month">JUN</div>
+            <div class="month" id="month">June</div>
             <div class="dots">
                 <div></div>
                 <div></div>
@@ -88,7 +108,7 @@
     <script>
         function updateCalendar() {
             const date = new Date();
-            const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
             const month = monthNames[date.getMonth()];
@@ -100,8 +120,18 @@
             document.getElementById('date').textContent = dayOfMonth;
         }
 
+        // Initial call to update the calendar
         updateCalendar();
-        setInterval(updateCalendar, 86400000); // Update every 24 hours
+
+        // Calculate milliseconds until midnight
+        const now = new Date();
+        const millisUntilMidnight = (new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1) - now);
+
+        // Set a timeout to update at midnight, then set interval for subsequent updates
+        setTimeout(() => {
+            updateCalendar();
+            setInterval(updateCalendar, 86400000); // Update every 24 hours
+        }, millisUntilMidnight);
     </script>
 </body>
 </html>
