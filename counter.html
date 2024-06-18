@@ -39,7 +39,7 @@
             text-align: center;
         }
 
-        .counter {
+        .counter-box {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -50,6 +50,32 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        .counter-box input {
+            font-size: 1.2rem;
+            padding: 10px;
+            width: 100%;
+            border: 2px solid var(--primary-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .counter-box input:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .counter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
         }
 
         .counter button {
@@ -78,7 +104,6 @@
             color: var(--text-light);
             border-radius: 6px;
             border: 2px solid var(--primary-color);
-            margin: 0 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -97,69 +122,20 @@
             background-color: var(--primary-color);
             color: white;
         }
-
-        .title-container {
-            position: relative;
-            display: inline-block;
-            max-width: 300px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
-
-        .title-input, .counter-title {
-            font-size: 1.2rem;
-            padding: 10px;
-            width: 100%;
-            border: 2px solid var(--primary-color);
-            border-radius: 6px;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-            box-sizing: border-box;
-        }
-
-        .title-input {
-            background-color: var(--background-light);
-            color: var(--text-light);
-        }
-
-        .title-input:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .counter-title {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: transparent;
-            color: var(--text-light);
-            pointer-events: none;
-            overflow: hidden;
-            padding: 10px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .title-container:hover .counter-title {
-            opacity: 1;
-        }
     </style>
 </head>
 <body>
     <div class="counter-container">
-        <div class="title-container">
+        <div class="counter-box">
             <input type="text" id="titleInput" class="title-input" placeholder="Enter title for counter...">
-            <span id="counterTitle" class="counter-title"></span>
-        </div>
-        <div class="counter">
-            <div>
-                <button id="decrementBtn">-</button>
-                <span id="count">0</span>
-                <button id="incrementBtn">+</button>
+            <div class="counter">
+                <div>
+                    <button id="decrementBtn">-</button>
+                    <span id="count">0</span>
+                    <button id="incrementBtn">+</button>
+                </div>
+                <button class="reset-button" onclick="resetCounter()" aria-label="Reset counter"><i class="fas fa-sync-alt"></i></button>
             </div>
-            <button class="reset-button" onclick="resetCounter()" aria-label="Reset counter"><i class="fas fa-sync-alt"></i></button>
         </div>
     </div>
 
@@ -187,11 +163,6 @@
             count = 0;
             countElement.textContent = count;
         }
-
-        // Update counter title
-        titleInput.addEventListener('input', () => {
-            counterTitle.textContent = titleInput.value;
-        });
     </script>
 </body>
 </html>
