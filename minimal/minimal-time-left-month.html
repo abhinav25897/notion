@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-
-    <title>Time Left in this month</title>
+    <title>Time Left in this Month</title>
     <style>
         /* Light theme */
         body {
             text-align: center;
             font-family: monospace;
             background-color: #fff; /* Default background color */
+            color: #000; /* Default text color */
         }
 
         .box {
@@ -20,9 +20,9 @@
             border-radius: 5px;
             min-width: 40px;
             height: 40px;
-            border: 3px solid #000000;
-            border-radius: 5px;
-            box-shadow: 2px 2px 1px 0px #000000;
+            border: 3px solid #000;
+            box-shadow: 2px 2px 1px 0px #000;
+            margin: 5px; /* Added margin for better spacing */
         }
 
         h2 {
@@ -46,9 +46,18 @@
         }
 
         /* Dark theme */
-        body.dark-theme {
-            background-color: #333;
-            color: #fff;
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212; /* Darker background for dark theme */
+                color: #e0e0e0; /* Lighter text color for better contrast */
+            }
+            .box {
+                border: 3px solid #e0e0e0; /* Lighter border color for better visibility */
+                box-shadow: 2px 2px 1px 0px #888888; /* Adjusted shadow color for dark theme */
+            }
+            #days {
+                background-color: #1e1e1e; /* Darker background for days box */
+            }
         }
     </style>
 </head>
@@ -57,8 +66,7 @@
     <div id="counter">
         <h2 class="box" id="days"></h2>
         <h2 class="box" id="hours"></h2>
-    
-    
+
         <h3>
             Left in <br>This Month
         </h3>
@@ -67,29 +75,16 @@
 <script>
     function showRemaining() {
         var now = new Date();
-        var hours = now.getHours();
-
-        // Automatically switch theme based on the time of day
-        if (hours >= 20 || hours < 6) {
-            document.body.classList.add("dark-theme");
-        } else {
-            document.body.classList.remove("dark-theme");
-        }
-
         var days_in_this_month = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
         var days = days_in_this_month - now.getDate();
         var hours = 23 - now.getHours();
-        var minutes = 59 - now.getMinutes();
-        var seconds = 59 - now.getSeconds();
 
         document.getElementById("days").innerHTML = days + "<br> <span class=\"small\"> days </span>";
         document.getElementById("hours").innerHTML = hours + "<br> <span class=\"small\"> hours</span>";
-        document.getElementById("minutes").innerHTML = minutes + "<br> <span class=\"small\">mins</span>";
-        document.getElementById("seconds").innerHTML = seconds + "<br> <span class=\"small\">secs</span>";
     }
 
     showRemaining(); // Initial call to display countdown
-    var timer = setInterval(showRemaining, 1000); // Update countdown every second
+    setInterval(showRemaining, 1000); // Update countdown every second
 </script>
 </body>
 </html>
