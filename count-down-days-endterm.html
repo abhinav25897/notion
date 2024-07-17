@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        #timer {
+            text-align: center;
+            font-size: 1.5em;
+            letter-spacing: 2px;
+        }
+
+        .days {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4em;
+        }
+
+        /* Light theme */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: white;
+                color: #183059;
+            }
+        }
+
+        /* Dark theme */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #183059;
+                color: #eeeeee;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">
+        <div class="days">
+            <div id="days"></div>days
+        </div>
+    </div>
+
+    <script>
+        const myDate = new Date('Sep 25, 2024 00:00:00');
+        
+        // countdown
+        let timer = setInterval(function() {
+            // get today's date
+            const today = new Date().getTime();
+
+            // get the difference
+            const diff = myDate - today;
+
+            // math
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            // display
+            document.getElementById("days").innerHTML = days;
+        }, 1000);
+    </script>
+</body>
+</html>
